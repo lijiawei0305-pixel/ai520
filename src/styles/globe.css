@@ -1,0 +1,163 @@
+.globe-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.globe-canvas,
+.globe-container {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.globe-canvas canvas,
+.globe-container canvas {
+  cursor: grab;
+}
+
+.globe-canvas canvas:active,
+.globe-container canvas:active {
+  cursor: grabbing;
+}
+
+.screen-atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  --halo-x: 50%;
+  --halo-y: 50%;
+  --halo-r: 320px;
+  --halo-opacity: 0;
+  --halo-rotation: 90deg;
+  --halo-inner-start: 54%;
+  --halo-inner-core-start: 62.1%;
+  --halo-inner-core-end: 64.2%;
+  --halo-inner-end: 64%;
+  --halo-outer-opacity: 0;
+}
+
+.screen-atmosphere::before {
+  position: absolute;
+  left: calc(var(--halo-x) - var(--halo-r));
+  top: calc(var(--halo-y) - var(--halo-r));
+  width: calc(var(--halo-r) * 2);
+  height: calc(var(--halo-r) * 2);
+  border-radius: 50%;
+  content: "";
+  transform: rotate(var(--halo-rotation));
+  opacity: var(--halo-opacity);
+  background:
+    conic-gradient(
+      from -35deg,
+      rgba(60, 190, 255, 0.12) 0deg,
+      rgba(180, 245, 255, 0.95) 38deg,
+      rgba(40, 200, 255, 0.75) 76deg,
+      rgba(20, 130, 255, 0.28) 145deg,
+      rgba(10, 90, 220, 0.16) 215deg,
+      rgba(40, 220, 255, 0.62) 285deg,
+      rgba(180, 245, 255, 0.38) 330deg,
+      rgba(60, 190, 255, 0.12) 360deg
+    );
+  -webkit-mask:
+    radial-gradient(
+      circle,
+      transparent var(--halo-inner-start),
+      #000 var(--halo-inner-core-start),
+      #000 var(--halo-inner-core-end),
+      transparent var(--halo-inner-end)
+    );
+  mask:
+    radial-gradient(
+      circle,
+      transparent var(--halo-inner-start),
+      #000 var(--halo-inner-core-start),
+      #000 var(--halo-inner-core-end),
+      transparent var(--halo-inner-end)
+    );
+  filter: blur(1.2px);
+}
+
+.screen-atmosphere::after {
+  position: absolute;
+  left: calc(var(--halo-x) - var(--halo-r) * 1.13);
+  top: calc(var(--halo-y) - var(--halo-r) * 1.13);
+  width: calc(var(--halo-r) * 2.26);
+  height: calc(var(--halo-r) * 2.26);
+  border-radius: 50%;
+  content: "";
+  transform: rotate(var(--halo-rotation));
+  opacity: var(--halo-outer-opacity);
+  background:
+    conic-gradient(
+      from -35deg,
+      rgba(35, 160, 255, 0.04) 0deg,
+      rgba(80, 220, 255, 0.55) 45deg,
+      rgba(20, 140, 255, 0.36) 105deg,
+      rgba(0, 80, 180, 0.12) 190deg,
+      rgba(30, 210, 255, 0.32) 280deg,
+      rgba(70, 220, 255, 0.18) 360deg
+    );
+  -webkit-mask:
+    radial-gradient(
+      circle,
+      transparent 58%,
+      #000 62%,
+      #000 70%,
+      transparent 82%
+    );
+  mask:
+    radial-gradient(
+      circle,
+      transparent 58%,
+      #000 62%,
+      #000 70%,
+      transparent 82%
+    );
+  filter: blur(18px);
+}
+
+.globe-marker-label {
+  transform: translate(-50%, -50%);
+  border: 1px solid var(--marker-color, rgba(56, 217, 255, 0.68));
+  border-radius: 999px;
+  padding: 5px 10px;
+  min-width: 42px;
+  color: #fff;
+  background: rgba(1, 8, 18, 0.86);
+  box-shadow:
+    0 0 16px var(--marker-glow, rgba(56, 217, 255, 0.52)),
+    inset 0 0 12px rgba(255, 255, 255, 0.08);
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.globe-marker-label--major {
+  box-shadow:
+    0 0 22px var(--marker-glow, rgba(56, 217, 255, 0.62)),
+    0 0 6px var(--marker-color, rgba(56, 217, 255, 0.72)),
+    inset 0 0 12px rgba(255, 255, 255, 0.1);
+}
+
+.country-tooltip {
+  border: 1px solid rgba(52, 206, 255, 0.3);
+  border-radius: 10px;
+  padding: 9px 10px;
+  color: #dffaff;
+  background: rgba(2, 10, 24, 0.9);
+  box-shadow: 0 0 18px rgba(34, 211, 238, 0.16);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.country-tooltip__name {
+  color: #fff;
+  font-weight: 900;
+}
