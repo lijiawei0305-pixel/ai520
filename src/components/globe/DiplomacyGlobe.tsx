@@ -206,7 +206,7 @@ export default function DiplomacyGlobe({ selectedCountry, onCountrySelect }: Dip
 
     controls.addEventListener?.('change', syncHalo);
 
-    if (import.meta.env.DEV) {
+    if (import.meta.env.DEV && import.meta.env.VITE_SHOW_RIM_DEBUG === 'true') {
       const rimDebug = {
         haloOpacity: 0,
         haloRotation: 90,

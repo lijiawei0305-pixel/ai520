@@ -1,7 +1,6 @@
 import { useCallback, useState } from 'react';
 import DiplomacyGlobe from './components/globe/DiplomacyGlobe';
 import BottomCommandPanel from './components/hud/BottomCommandPanel';
-import FloatingToolBar from './components/hud/FloatingToolBar';
 import LeftPanels from './components/hud/LeftPanels';
 import RightPanels from './components/hud/RightPanels';
 import TopBar from './components/hud/TopBar';
@@ -24,7 +23,6 @@ export default function App() {
         <TopBar />
         <LeftPanels selectedCountry={selectedCountry} />
         <RightPanels />
-        <FloatingToolBar />
         <BottomCommandPanel />
       </section>
     </main>
